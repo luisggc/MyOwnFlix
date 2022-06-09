@@ -3,8 +3,8 @@ import Image from "next/image";
 import { forwardRef, useContext } from "react";
 import { useRouter } from "next/router";
 import { MovieModalContext } from "../context/MovieModalContext";
-
-const Thumbnail = forwardRef((movieInfo, ref) => {
+ 
+const Thumbnail = (movieInfo) => {
   //const router = useRouter();
   const {
     title,
@@ -21,10 +21,10 @@ const Thumbnail = forwardRef((movieInfo, ref) => {
   const BASE_URL = "https://image.tmdb.org/t/p/w500";
   const imageSource = `${BASE_URL}${backdrop_path || posterPath}`;
   return (
-    <div
-      ref={ref}
+
+    <div 
       className="group cursor-pointer p-2 transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50"
-      onClick={() => setMovie({...movieInfo, imageSource})}
+      onClick={() => setMovie({ ...movieInfo, imageSource })}
     >
       <Image layout="responsive" height={1080} width={1920} src={imageSource} />
       <div className="p-2">
@@ -37,8 +37,8 @@ const Thumbnail = forwardRef((movieInfo, ref) => {
           {vote_count}
         </p>
       </div>
-    </div>
+    </div >
   );
-});
+};
 
 export default Thumbnail;
