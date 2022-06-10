@@ -28,10 +28,28 @@ export default function Home({ results }) {
 export async function getServerSideProps(context) {
   const genre = context.query.genre;
   const request = await fetch(
-    `https://api.themoviedb.org/3${requests[genre]?.url || requests.fetchTrending.url}`
+    `https://api.themoviedb.org/3${requests[genre]?.url || requests.fetchTrending.url}&page=1`
   );
-  const data = await request.json();
+  let data = await request.json();
+
+  data = {
+    ...data,
+    results: data?.results?.map((movie) => {
+      return {
+        ...movie,
+        imageThumbSource: `https://image.tmdb.org/t/p/w500${
+          movie.backdrop_path || movie.posterPath
+        }`,
+        title: movie?.title || movie?.original_name || "",
+        imageOriginalSource: `https://image.tmdb.org/t/p/original${
+          movie.backdrop_path || movie.posterPath
+        }`,
+      };
+    }),
+  };
+  
   console.log(data);
+
   return {
     props: {
       results: data?.results,

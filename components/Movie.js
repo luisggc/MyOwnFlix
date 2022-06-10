@@ -15,14 +15,11 @@ export default function Movie() {
   if (!movie) return <></>;
   //const { id } = movie;
 
-  const BASE_URL = "https://image.tmdb.org/t/p/original";
-  const imageSource = `${BASE_URL}${movie.backdrop_path || movie.posterPath}`;
-  console.log(imageSource);
   const closeModal = () => {
     setMovie(false);
   };
 
-  const { title, overview, release_date, vote_count, popularity } = movie;
+  const { title, overview, release_date, vote_count, popularity, imageOriginalSource} = movie;
 
   return (
     <div
@@ -52,7 +49,7 @@ export default function Movie() {
               </div>
             ) : (
               <div>
-                <Image layout="responsive" height={1080} width={1920} src={imageSource} />
+                <Image layout="responsive" height={1080} width={1920} src={imageOriginalSource} />
               </div>
             )}
             <div className="absolute bottom-0 bg-gradient-to-t from-[#131A28] h-52 w-full"></div>
