@@ -23,9 +23,10 @@ export default function Header() {
       </div>
       <Image
         className="object-contain"
-        src="https://i.pinimg.com/originals/ee/d2/fa/eed2fa4feef660b31e52300ae54659c1.png"
+        src="/MyOwnFlix.png"
         width={200}
         height={60}
+        // "https://i.pinimg.com/originals/ee/d2/fa/eed2fa4feef660b31e52300ae54659c1.png"
       />
     </header>
   );

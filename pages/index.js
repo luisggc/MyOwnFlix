@@ -12,7 +12,7 @@ export default function Home({ results }) {
     <MovieModalProvider>
       <div className={styles.container}>
         <Head>
-          <title>HackerFlix</title>
+          <title>MyOwnFlix</title>
           <meta name="description" content="Where all you data is" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
