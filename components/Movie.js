@@ -6,20 +6,15 @@ import { ThumbUpIcon, PlayIcon, ReplyIcon, XIcon, FireIcon } from "@heroicons/re
 export default function Movie() {
   const { movie, setMovie } = useContext(MovieModalContext);
   const [isPlaying, setIsPlaying] = useState(false);
-  //const [ movie, setMovie ] = useState({ backdrop_path: "/i5dUmY2xRzgkmjHJYKNj8kPX1Xx.jpg" });
-  //const router = useRouter();
-  //const movieID = router.query?.movie;
-  //console.log(movie);
   const content = useRef();
 
   if (!movie) return <></>;
-  //const { id } = movie;
 
   const closeModal = () => {
     setMovie(false);
   };
 
-  const { title, overview, release_date, vote_count, popularity, imageOriginalSource} = movie;
+  const { title, overview, release_date, vote_count, popularity, imageOriginalSource } = movie;
 
   return (
     <div
