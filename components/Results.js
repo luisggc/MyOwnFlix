@@ -2,27 +2,45 @@ import Thumbnail from "./Thumbnail";
 import { useRouter } from "next/router";
 import { useState, useEffect, useRef } from "react";
 import { fetchGenre } from "../api/fetch";
+import Spinner from "../components/Spinner";
 
 export default function Results({ initialResults }) {
-  const [results, setResults] = useState(initialResults)
-  const page = useRef(1)
+  const [results, setResults] = useState(initialResults);
+  const [isLoading, setIsLoading] = useState(true);
+  const page = useRef(1);
   const router = useRouter();
 
+  // useEffect to trigger on scroll end
   useEffect(() => {
-    setResults(initialResults)
-  }, [initialResults])
+    const handleScroll = () => {
+      if (window.innerHeight + window.scrollY > document.body.offsetHeight - 300) {
+        loadMoreResults()
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
-  const genre = router.query.genre
-
+  useEffect(() => {
+    setResults(initialResults);
+  }, [initialResults]);
 
   const loadMoreResults = async () => {
-    page.current++
-    console.log(page.current)
-    console.log(genre)
-    const moreResults = await fetchGenre(genre, page.current, false)
-    setResults((results => [...results, ...moreResults?.results]))
-  }
-  
+    const genre = router.query.genre;
+    page.current++;
+    setIsLoading(true);
+    const moreResults = await fetchGenre(genre, page.current, false);
+    // This is a bug fix from that api that is return the same movie in different paginations
+    const existingIDs = results.map((movie) => movie.id);
+    const moreResultsWithoutDuplicates = moreResults.results.filter(
+      (m) => existingIDs.indexOf(m?.id) === -1
+    );
+    setResults((results) => [...results, ...moreResultsWithoutDuplicates]);
+    setIsLoading(false);
+  };
+
   return (
     <>
       <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3 3xl:flex flex-wrap justify-center">
@@ -30,7 +48,9 @@ export default function Results({ initialResults }) {
           <Thumbnail key={result.id} {...result} />
         ))}
       </div>
-      <button className="p-5 text-xl bg-white text-black self-center items-center" onClick={loadMoreResults}>Show More</button>
+      {isLoading && <Spinner />}
     </>
   );
 }
+
+
