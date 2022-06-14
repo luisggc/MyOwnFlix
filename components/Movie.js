@@ -29,7 +29,7 @@ export default function Movie() {
       <div className="fixed top-0 left-0 bg-black bg-opacity-75 transition-opacity h-screen w-screen z-40 flex justify-center items-center">
         <div
           ref={content}
-          className="absolute rounded z-50 bg-[#131A28]  overflow-hidden mx-10 max-w-7xl drop-shadow-2xl"
+          className="absolute rounded z-50 bg-[#131A28] w-11/12 overflow-hidden mx-10 max-w-7xl drop-shadow-2xl"
         >
           <div className="relative">
             {isPlaying ? (
@@ -53,18 +53,21 @@ export default function Movie() {
             </div>
             <div className="absolute bottom-0 ml-16 mb-10">
               <div className="max-w-xl">
-                {!isPlaying && <h2 className="text-7xl drop-shadow-sm">{title}</h2>}
+                {!isPlaying && <h2 className="text-3xl md:text-5xl drop-shadow-sm">{title}</h2>}
               </div>
               {!isPlaying ? (
                 <button
-                  className="bg-white font-bold rounded-md px-8 my-6 py-4 text-black text-2xl transition-all duration-100 ease-in-out flex"
+                  className="bg-white font-bold rounded-md  text-black transition-all duration-100 ease-in-out flex my-6 items-center
+                  text-lg md:text-2xl
+                   px-4 py-2 md:px-8 md:py-4
+                  "
                   onClick={() => setIsPlaying((s) => !s)}
                 >
                   <div>
-                    <PlayIcon className="h-8" />
+                    <PlayIcon className="h-6 md:h-8" />
                   </div>
 
-                  <div className="ml-4">
+                  <div className="ml-2 md:ml-4">
                     <p>Play</p>
                   </div>
                 </button>
@@ -78,7 +81,7 @@ export default function Movie() {
 
           <div className="m-10 p-10 flex flex-row">
             <div>
-              <p className="text-xl">{overview}</p>
+              <p className="text-lg md:text-xl">{overview}</p>
             </div>
             <div className="w-96 ml-6">
               <p>Released date:</p>
