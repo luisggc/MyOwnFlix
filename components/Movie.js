@@ -51,13 +51,14 @@ export default function Movie() {
             <div className="absolute top-4 right-4 p-5 cursor-pointer" onClick={closeModal}>
               <XIcon className="h-8" />
             </div>
-            <div className="absolute bottom-0 ml-16 mb-10">
+            <div className="absolute bottom-0 ml-16 mb-4 md:mb-10">
               <div className="max-w-xl">
                 {!isPlaying && <h2 className="text-3xl md:text-5xl drop-shadow-sm">{title}</h2>}
               </div>
               {!isPlaying ? (
                 <button
-                  className="bg-white font-bold rounded-md  text-black transition-all duration-100 ease-in-out flex my-6 items-center
+                  className="bg-white font-bold rounded-md  text-black transition-all duration-100 ease-in-out flex items-center
+                  my-4 md:my-6 
                   text-lg md:text-2xl
                    px-4 py-2 md:px-8 md:py-4
                   "
@@ -72,18 +73,18 @@ export default function Movie() {
                   </div>
                 </button>
               ) : (
-                <div className="p-5 cursor-pointer" onClick={() => setIsPlaying((s) => !s)}>
+                <div className="md:p-5 cursor-pointer" onClick={() => setIsPlaying((s) => !s)}>
                   <ReplyIcon className="h-8" />
                 </div>
               )}
             </div>
           </div>
 
-          <div className="m-10 p-10 flex flex-row">
+          <div className="md:m-10 p-8 md:p-10 flex flex-col md:flex-row">
             <div>
               <p className="text-lg md:text-xl">{overview}</p>
             </div>
-            <div className="w-96 ml-6">
+            <div className="w-96 md:ml-6 mt-4 md:mt-0">
               <p>Released date:</p>
               <p>{release_date} </p>
               <p className="flex mt-2">
