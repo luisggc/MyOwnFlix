@@ -47,25 +47,25 @@ export default function Movie() {
                 <Image layout="responsive" height={1080} width={1920} src={imageOriginalSource} />
               </div>
             )}
-            <div className="absolute bottom-0 bg-gradient-to-t from-[#131A28] h-52 w-full"></div>
+            <div className="absolute bottom-0 bg-gradient-to-t from-[#131A28] h-10 md:h-52 w-full"></div>
             <div className="absolute top-4 right-4 p-5 cursor-pointer" onClick={closeModal}>
               <XIcon className="h-8" />
             </div>
-            <div className="absolute bottom-0 ml-16 mb-4 md:mb-10">
+            <div className="absolute bottom-0 ml-8 md:ml-16 mb-4 md:mb-10">
               <div className="max-w-xl">
-                {!isPlaying && <h2 className="text-3xl md:text-5xl drop-shadow-sm">{title}</h2>}
+                {!isPlaying && <h2 className="text-2xl md:text-5xl drop-shadow-sm">{title}</h2>}
               </div>
               {!isPlaying ? (
                 <button
                   className="bg-white font-bold rounded-md  text-black transition-all duration-100 ease-in-out flex items-center
                   my-4 md:my-6 
-                  text-lg md:text-2xl
+                  text-md md:text-2xl
                    px-4 py-2 md:px-8 md:py-4
                   "
                   onClick={() => setIsPlaying((s) => !s)}
                 >
                   <div>
-                    <PlayIcon className="h-6 md:h-8" />
+                    <PlayIcon className="h-5 md:h-8" />
                   </div>
 
                   <div className="ml-2 md:ml-4">
